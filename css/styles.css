@@ -5,6 +5,7 @@
     --title-text-color:#212121;
     --title-text-color2:#FFFFFF;
     --accent-color:#2196F3;
+    --timing-function:cubic-bezier(0.4, 0, 0.2, 1)
 
 }
 
@@ -70,6 +71,8 @@ img{
     padding-bottom: 25px;
     background-color: var(--title-text-color2);
     border-bottom: 1px solid #ECECEC;
+    position: relative;
+
 }
 
 .logo{
@@ -94,6 +97,7 @@ img{
 
 .navigation{
     margin-right: auto;
+   
 }
 
 .left-contact{
@@ -108,13 +112,38 @@ img{
     line-height: 1.14;
     letter-spacing: 0.02em;
     color: var(--title-text-color);
+
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-    
+
 .header-nav-link:hover,
 .header-nav-link:focus{
-        color:var(--accent-color);
+    color:var(--accent-color);
 }
-    
+
+.factive-border::after{
+    content: ' ';
+    display: inline-block;
+    width: 48px;
+    height: 4px;
+    background-color:  rgba(33, 150, 243, 0.9);;
+    position: absolute;
+    bottom: 0;
+    left: 252px;
+}
+
+
+.sactive-border::after{
+    content: ' ';
+    display: inline-block;
+    width: 78px;
+    height: 4px;
+    background-color:  rgba(33, 150, 243, 0.9);;
+    position: absolute;
+    bottom: 0;
+    left: 345px;
+}
+ 
 .contact{
     color: var(--primary-text-color);
     font-weight: 500;
@@ -123,23 +152,30 @@ img{
     letter-spacing: 0.02em;
     align-items: center;
     display: flex;
-    }
+
+    transition:color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact:hover,
+.contact:focus{
+    color:var(--accent-color);
+       
+}
 
 .social-netw-icon{
     margin-right: 10px;
     fill: currentColor;
+
+    transition:color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-    
-.contact:hover,
-.contact:focus{
-        color:var(--accent-color);
-       
-    }
 
 .social-netw-icon:hover,
 .social-netw-icon:focus{
-    color:var(--accent-color)
-    }
+    color:var(--accent-color);
+}
+    
+
+
 
 
 /*---------------------MAIN------------------------*/
@@ -219,6 +255,9 @@ img{
    margin-top: 30px;
    margin-left: auto;
    margin-right: auto;
+
+   transition-duration: 250ms;
+   transition-timing-function:color cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 
@@ -227,10 +266,61 @@ img{
    color:var(--title-text-color2);
    }
 
+/*---------------------Backdrop-----------------------*/
+.backdrop{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0, 0, 0.2);
+    transition:opacity 250ms var(--timing-function), visibility 250ms var(--timing-function);
+}
+
+.backdrop.is-hidden{
+   opacity: 0;
+   pointer-events: none;
+   visibility: hidden;
+}
 
 
+.modal{
+    position: relative;
+    width: 528px;
+    min-height: 581px;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    transition: transform 250ms var(--timing-function);
+}
 
-          /*-------Description section-------*/
+
+.modal-button{
+    height: 30px;
+    width:30px;
+
+    right: 8px;
+    top: 8px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+    position: absolute;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+
+.backdrop.is-hidden .modal{
+    transform: translate(-50%, -50%) scale(0);
+
+}
+
+/*-------Description section-------*/
 
 
 .description-container {
@@ -244,11 +334,20 @@ img{
     }
 
 .description-item{
+    gap: 30px;
+}
+
+.svg-description{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     width: 270px;
     height: 120px;
-    gap: 30px;
     background: #F5F4FA;
     border-radius: 4px;
+
+    margin-bottom: 30px;
 }
 
 .third-header{
@@ -271,10 +370,10 @@ img{
     }
 
 .social-netw-iconss{
-        margin-top: 25px;
-        margin-right: 100px;
-        margin-bottom: 25px;
-        margin-left: 100px;
+    margin-top: 25px;
+    margin-right: 100px;
+    margin-bottom: 25px;
+    margin-left: 100px;
      
     }
 
@@ -284,8 +383,8 @@ img{
 .image-container{
     padding-top: 94px;
     padding-bottom: 94px;
+   
     }
-
 
 .title-h{
     font-size: 36px;
@@ -296,15 +395,50 @@ img{
         }
 
 
+.li-image{
+    position: relative;
+    display: flex;
+}
+
 .images{
     display: flex;
-    gap: 30px;     
+    gap: 30px;    
         }
 
- .images-item{
+.images-item{
     width: (calc(100%-60)/3); 
     margin: 0; 
         }
+
+.img-title{
+
+   
+
+}
+
+.image-title{
+
+   position: absolute;
+   height: 70px; ;
+   width: 370px ;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   bottom: 0%;
+   font-family: var(--primary-text-color);
+   font-style: normal;
+   font-weight: 700;
+   font-size: 14px;
+   line-height: 1,14;
+   text-align: center;
+   letter-spacing: 0.03em;
+   text-transform: uppercase;
+   
+   color: #FFFFFF;
+   background: rgba(47, 48, 58, 0.8);
+}
+
+    
             
 
 
@@ -345,6 +479,11 @@ img{
     padding-top:30px;
     padding-bottom: 30px;
 }
+
+.workers-capture{
+    margin-bottom: 16px;
+}
+   
 
 .third-headerworkers{
     font-weight: 500;
@@ -390,6 +529,10 @@ img{
     display: flex;
     align-items: center;
     fill: #AFB1B8;
+
+    transition:
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .link-social-netw:hover,
@@ -397,8 +540,6 @@ img{
     background-color: var(--accent-color);
     fill: white;
     }  
-
-
 
 .social-netw-icons{
     margin-top: 12px;
@@ -426,8 +567,8 @@ img{
     align-items: center; 
     gap: 30px;
     fill:#AFB1B8;
-
 }
+
 
 .p-header{
     margin-bottom: 50px;
@@ -439,17 +580,31 @@ img{
     letter-spacing: 0.03em;
 }
 
-.pclient-item{
+.link-pclient{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 170px;
     height: 92px;
     border-radius: 4px;
     border: 1px solid #AFB1B8;
+    fill:#AFB1B8 ;
 }
 
 .link-pclient{
 
     width: 100%;
     height: 100%;
+
+    transition:
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+.link-pclient:hover,
+.link-pclient:focus{
+        fill: var(--accent-color);
+        border: 1px solid var(--accent-color); 
     }
 
 .svg-pclient{
@@ -458,20 +613,6 @@ img{
     margin-bottom: 16px;
     margin-left: 32px;
     }
-
-.pclient-item:hover,
-.pclient-item:focus
-{
-    border: 1px solid var(--accent-color); 
-}
-
-.link-pclient:hover,
-.link-pclient:focus{
-    fill: var(--accent-color);
-}
-
-    
-
 
 
 
@@ -506,9 +647,15 @@ img{
     border-radius: 4px;
     cursor:pointer;
     display: inline-block;
+
+    transition:
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
    
-.button-portfolio:hover{
+.button-portfolio:hover,
+.button-portfolio:focus{
     background-color: var(--accent-color);
     color:var(--title-text-color2); 
     box-shadow:  0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -567,19 +714,58 @@ img{
     margin-bottom: -30px;
 }
 
+
 .gallery-paragraph{
     font-size: 16px;
     line-height: 1.87;
     letter-spacing: 0.03em;
     color: var(--primary-text-color);
+
 }
 
 .list-item{
     width: 370px;
     margin-right: 30px;
     margin-bottom: 30px;
+
+    transition: box-shadow 250ms var(--timing-function);
+}
+  
+.list-item{
+   
+    
 }
 
+.top-image-portfolio{
+    position: relative;
+    overflow: hidden;
+}
+
+.opacity-text{
+    position: absolute;
+    top:0;
+    
+    font-family: var(--primary-font);
+    font-size: 18px;
+    line-height: 1.55;
+    letter-spacing: 0.03em;
+    padding-top: 63px;
+    padding-right: 24px;
+    padding-bottom: 63px;
+    padding-left: 24px;
+
+    height: 100%;
+
+    background: rgba(33, 150, 243, 0.9);
+    color: var(--title-text-color2);
+
+    transform: translateY(100%);
+    transition: transform 250ms var(--timing-function);
+}
+
+.list-item:hover .opacity-text{
+    transform: translateY(0);
+}
 
 
 .list-item:hover{
@@ -680,6 +866,8 @@ img{
     display: flex;
     align-items: center;
     fill: white;
+
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 
